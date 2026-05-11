@@ -52,17 +52,34 @@ Paperless ist anschließend auf Port `8000` erreichbar (bzw. über die in Coolif
 
 ---
 
+## Storage-Layer
+
+Die Compose-Datei trennt den Speicher bereits sauber nach Verwendungszweck:
+
+| Volume | Zweck |
+|---|---|
+| `paperless_data` | Paperless-Anwendungsdaten |
+| `paperless_media` | Hochgeladene Dokumente und Medien |
+| `paperless_pgdata` | PostgreSQL-Daten |
+| `paperless_redisdata` | Redis-Persistenz |
+
+Damit kannst du später einzelne Layer leichter auf separate Storage-Klassen, Volumes oder Container abbilden, ohne die komplette Konfiguration umbauen zu müssen.
+
+---
+
 ## Datenbank auslagern (optional)
 
 Die Konfiguration ist bereits vorbereitet. Um die DB in einen eigenen Coolify-Container auszulagern:
 
-1. Den `db`-Service und das `pgdata`-Volume im Compose-File auskommentieren
+1. Den `db`-Service und das Volume `paperless_pgdata` im Compose-File auskommentieren
 2. In Coolify folgende Vars auf den externen DB-Container zeigen:
 
 ```
 PAPERLESS_DBHOST=<coolify-interner-hostname>
 PAPERLESS_DBPORT=5432
 ```
+
+Die übrigen Volumes können dabei unverändert bleiben, weil sie unabhängig von der Datenbank sind.
 
 ---
 

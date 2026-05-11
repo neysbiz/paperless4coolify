@@ -21,8 +21,9 @@
 #
 # To install and update paperless with this file, do the following:
 #
-# - Copy this file as 'docker-compose.yml' and the files 'docker-compose.env'
-#   and '.env' into a folder.
+# - Use this file as the Docker Compose definition in Coolify.
+# - Manage all runtime variables directly in Coolify.
+# - Keep '.env.example' only as documentation/reference.
 # - Run 'docker compose pull'.
 # - Run 'docker compose up -d'.
 #
@@ -33,13 +34,12 @@ services:
     image: docker.io/library/redis:8
     restart: unless-stopped
     volumes:
-      - redisdata:/data
-#      - redisdata:/paperless_redis_
+      - paperless_redisdata:/data
   db:
     image: docker.io/library/postgres:18
     restart: unless-stopped
     volumes:
-      - pgdata:/var/lib/postgresql
+      - paperless_pgdata:/var/lib/postgresql
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-paperless}
       POSTGRES_USER: ${POSTGRES_USER:-paperless}
@@ -55,8 +55,8 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - data:/usr/src/paperless/data
-      - media:/usr/src/paperless/media
+      - paperless_data:/usr/src/paperless/data
+      - paperless_media:/usr/src/paperless/media
       - ./export:/usr/src/paperless/export
       - ./consume:/usr/src/paperless/consume
     environment:
@@ -95,14 +95,8 @@ services:
   tika:
     image: docker.io/apache/tika:latest
     restart: unless-stopped
-#volumes:
-#  data:
-#  media:
-#  pgdata:
-#  redisdata:
-
 volumes:
-  paperless_psql_:
-  paperless_redis_:
+  paperless_data:
   paperless_media:
-  paperless_:
+  paperless_pgdata:
+  paperless_redisdata:
