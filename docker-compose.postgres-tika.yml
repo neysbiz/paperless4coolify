@@ -34,6 +34,7 @@ services:
     restart: unless-stopped
     volumes:
       - redisdata:/data
+#      - redisdata:/paperless_redis_
   db:
     image: docker.io/library/postgres:18
     restart: unless-stopped
@@ -94,8 +95,14 @@ services:
   tika:
     image: docker.io/apache/tika:latest
     restart: unless-stopped
+#volumes:
+#  data:
+#  media:
+#  pgdata:
+#  redisdata:
+
 volumes:
-  data:
-  media:
-  pgdata:
-  redisdata:
+  paperless_psql_:
+  paperless_redis_:
+  paperless_media:
+  paperless_:
