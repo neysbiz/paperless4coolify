@@ -1,6 +1,6 @@
 # paperless4coolify
 
-Paperless-NGX für das Deployment mit [Coolify](https://coolify.io) – vorkonfiguriert mit PostgreSQL, Redis, Apache Tika und Gotenberg.
+Paperless-NGX für das Deployment mit [Coolify](https://coolify.io) – vorkonfiguriert mit PostgreSQL, Redis, Apache Tika und Gotenberg. Das Webserver-Image wird dabei von Docker Hub bezogen.
 
 ---
 
