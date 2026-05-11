@@ -1,0 +1,8 @@
+# Echte Env-Dateien niemals committen!
+.env
+*.env
+!.env.example
+
+# Lokale Daten-Ordner (falls lokal getestet)
+consume/
+export/
