@@ -53,12 +53,15 @@ services:
       - gotenberg
       - tika
     ports:
-      - "8000:8000"
+      - "8004:8000"
     volumes:
       - paperless_data:/usr/src/paperless/data
       - paperless_media:/usr/src/paperless/media
       - ./export:/usr/src/paperless/export
       - ./consume:/usr/src/paperless/consume
+    networks:
+      - default
+      - coolify
     environment:
       # --- Interne Service-Verbindungen ---
       PAPERLESS_REDIS: redis://broker:6379
@@ -100,3 +103,7 @@ volumes:
   paperless_media:
   paperless_pgdata:
   paperless_redisdata:
+
+networks:
+  coolify:
+    external: true
