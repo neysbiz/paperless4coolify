@@ -8,6 +8,7 @@ Paperless-NGX für das Deployment mit [Coolify](https://coolify.io) – vorkonfi
 
 | Datei | Beschreibung |
 |---|---|
+| `docker-compose.yml` | Standard-Dateiname für Compose (Coolify-Default) |
 | `docker-compose.postgres-tika.yml` | Hauptkonfiguration (alle Services) |
 | `.env.example` | Dokumentation aller Umgebungsvariablen |
 | `.gitignore` | Schützt echte `.env`-Dateien vor versehentlichem Commit |
@@ -20,7 +21,7 @@ Paperless-NGX für das Deployment mit [Coolify](https://coolify.io) – vorkonfi
 
 1. Coolify öffnen → **New Resource → Docker Compose**
 2. Als Quelle dieses GitHub-Repository angeben
-3. Als Compose-Datei `docker-compose.postgres-tika.yml` auswählen
+3. Als Compose-Datei `docker-compose.yml` auswählen (oder explizit `docker-compose.postgres-tika.yml`)
 
 ### 2. Umgebungsvariablen setzen
 
