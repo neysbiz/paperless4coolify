@@ -53,7 +53,7 @@ services:
       - gotenberg
       - tika
     ports:
-      - "8000:8000"
+      - "8004:8000"
     volumes:
       - paperless_data:/usr/src/paperless/data
       - paperless_media:/usr/src/paperless/media
